@@ -28,20 +28,24 @@ android {
         versionName = "Atlas 阿特拉斯"
         vectorDrawables {
             useSupportLibrary = true
-        packagingOptions {
-        exclude 'META-INF/DEPENDENCIES'
-        exclude 'META-INF/LICENSE'
-        exclude 'META-INF/LICENSE.txt'
-        exclude 'META-INF/license.txt'
-        exclude 'META-INF/NOTICE'
-        exclude 'META-INF/NOTICE.txt'
-        exclude 'META-INF/notice.txt'
-        exclude 'META-INF/INDEX.LIST'
-        exclude 'META-INF/*.kotlin_module'
-    }
         }
-
     }
+
+    // ✅ packaging 配置放在 defaultConfig 外面，和它并列
+    packaging {
+        resources.excludes.addAll(listOf(
+            "META-INF/DEPENDENCIES",
+            "META-INF/LICENSE",
+            "META-INF/LICENSE.txt",
+            "META-INF/license.txt",
+            "META-INF/NOTICE",
+            "META-INF/NOTICE.txt",
+            "META-INF/notice.txt",
+            "META-INF/INDEX.LIST",
+            "META-INF/*.kotlin_module"
+        ))
+    }
+
     buildTypes {
         release {
             buildConfigField("Integer", "releaseNumber", "$releaseNumber")
@@ -74,13 +78,13 @@ android {
     /*composeOptions {
         kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
     }*/
+    
     packaging {
         resources.excludes.apply {
             add("/META-INF/{AL2.0,LGPL2.1}")
             add("META-INF/beans.xml")
         }
     }
-
 
     applicationVariants.all {
         outputs.all {
@@ -89,8 +93,6 @@ android {
                 "Re-WearBili - $versionName Ver.$releaseNumber Rel.$versionCode.apk"
         }
     }
-
-
 }
 
 protobuf {
@@ -158,22 +160,17 @@ dependencies {
     kapt(libs.hilt.work.compiler)
     implementation(libs.hilt.navigation.compose)
 
-
     implementation(libs.coil.compose)
     implementation(libs.coil.gif)
 
     implementation(libs.accompanist.placeholder.material)
 
-
     implementation(libs.androidx.paging.runtime.ktx)
     //noinspection GradleDependency
     implementation(libs.androidx.paging.compose)
 
-
     implementation(libs.androidx.navigation.compose)
     implementation(libs.kotlinx.serialization.json)
-
-
 
     /*// For media playback using ExoPlayer
     implementation(libs.androidx.media3.exoplayer)
@@ -193,12 +190,10 @@ dependencies {
 
     //implementation(libs.crashx)
 
-
     // (Java only)
     implementation(libs.androidx.work.runtime)
     // Kotlin + coroutines
     implementation(libs.androidx.work.runtime.ktx)
-
 
     implementation(libs.androidx.room.runtime)
     ksp(libs.androidx.room.compiler)
@@ -209,7 +204,6 @@ dependencies {
     implementation(libs.okhttp)
     implementation(libs.rxhttp)
     ksp(libs.rxhttp.compiler)
-
 
     implementation(libs.photoView)
 
