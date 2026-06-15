@@ -1,0 +1,13 @@
+*.iml
+.gradle
+.idea/
+.DS_Store
+/build
+/libs/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+/app/src/main/java/cn/spacexc/wearbili/remake/AppSecrets.kt
+/app/mapping.txt
+.kotlin/
