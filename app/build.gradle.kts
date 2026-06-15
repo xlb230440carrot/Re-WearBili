@@ -31,7 +31,7 @@ android {
         }
     }
 
-    // ✅ packaging 配置放在 defaultConfig 外面，和它并列
+    // ✅ packaging 配置放在 defaultConfig 外面，和它并列。
     packaging {
         resources.excludes.addAll(listOf(
             "META-INF/DEPENDENCIES",
